@@ -85,6 +85,8 @@
 		</div>
 		
 
+		<!-- Contenido Principal -->
+		<div class="page-content">
 
 		<!-- Contenido -->
 			{% block contenido %} 
@@ -92,5 +94,16 @@
 				<!-- Block sirve para indicar que colocaremos un bloque de contenido a traves de nuestras variable content -->
 			{% endblock %}
 		<!-- /Contenido-->
+
+			<!-- Barra de navegación -->
+			<div class="breadcrumb-line">
+				<ul class="breadcrumb">
+					{{ request.path }}
+				</ul>
+			</div>
+			<!-- Barra de navegación -->
+		
+		</div>
+		<!-- /Contenido Principal -->
 	</body>
 </html>
