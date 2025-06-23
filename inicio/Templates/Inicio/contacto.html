@@ -7,31 +7,24 @@
     {% load static %}
     <img src="{% static 'inicio/images/contacto.png' %}" alt="Imagen contacto">
 {% endblock %}
-{% block vista %}
-<a>Contacto</a>
-{% endblock %}
-{% block contenido%}
-	<!-- Contenido Principal-->
-        <div class="page-content">
 
+{% block vista %}
+    Contacto
+{% endblock %}
+
+{% block contenido%}
 
 			<!--Encabezdo -->
-			<div class="page-header">
-				<div class="page-title">
-					<h3>Contacto:
-                    <small>Ingresa tu información</small></h3>
-				</div>
-
-				
-				
-			</div>
+            {% block encabezado %}
+                <h3>Contacto:
+                <small>Ingresa tu información</small></h3>
+            {% endblock encabezado %}
 			<!-- /Encabezado-->
             
 			<!-- Formulario -->
 			<form class="form-horizontal" action="#" role="form">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                    
                         <div class="form-group row">
                             <label class="col-sm-2 control-label text-right">Nombre:</label>
                             <div class="col-sm-10">
@@ -49,11 +42,9 @@
                         <div class="form-actions text-right">
                             <input type="submit" value="Enviar" class="btn btn-primary">
                         </div>
-
                     </div>
 				</div>
 			</form>
 		<!-- Fin del Formulario -->
-		</div>
-	<!-- /Contenido Principal-->
-{% endblock %}
+        
+{% endblock contenido %}

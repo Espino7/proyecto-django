@@ -52,6 +52,7 @@
 <script type="text/javascript" src="js/application.js"></script>
 
 </head>
+
 	<body>
 		<div class="page-container">
 		<!-- sidebar -->
@@ -64,10 +65,7 @@
 							
 							{% endblock %}
 							<div class="user-info">
-								{%block vista%}
-								
-								{% endblock %}
-								<span>DSM</span>
+								{%block vista%}{% endblock %}<span>DSM</span>
 							</div>
 						</a>
 					</div>
@@ -87,6 +85,28 @@
 
 		<!-- Contenido Principal -->
 		<div class="page-content">
+		
+		<!--Encabezdo -->
+		<div class="page-header">
+			<div class="page-title">
+				{%block encabezado%} {% endblock %}
+			</div>
+		</div>
+		<!-- /Encabezado-->
+
+		<!-- Barra de navegación -->
+			<div class="breadcrumb-line">
+				<ul class="breadcrumb">
+					<a href="{%url 'Principal'%}">
+						{%if request.path == '/' %}
+							Principal
+						{% else %}
+							Principal{{ request.path }}
+						{% endif %}
+					</a>
+				</ul>
+			</div>
+			<!-- Barra de navegación -->
 
 		<!-- Contenido -->
 			{% block contenido %} 
@@ -95,13 +115,7 @@
 			{% endblock %}
 		<!-- /Contenido-->
 
-			<!-- Barra de navegación -->
-			<div class="breadcrumb-line">
-				<ul class="breadcrumb">
-					{{ request.path }}
-				</ul>
-			</div>
-			<!-- Barra de navegación -->
+
 		
 		</div>
 		<!-- /Contenido Principal -->

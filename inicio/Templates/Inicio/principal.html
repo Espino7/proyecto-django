@@ -7,24 +7,19 @@
     {% load static %}
     <img src="{% static 'inicio/images/home.png' %}" alt="Imagen principal">
 {% endblock %}
+{% block vista %}
+    Principal
+{% endblock %}
     
 {% block contenido%}
     <!-- Contenido Principal-->
 	<div class="page-content">
-
-
 		<!--Encabezdo -->
-		<div class="page-header">
-			<div class="page-title">
-				<h3>Alumnos
-				<small>Lista de Alumnos </small></h3>
-			</div>
-
-				
-		</div>
+		{% block encabezado %}
+			<h3>Alumnos
+			<small>Lista de Alumnos </small></h3>
+		{% endblock %}
 		<!-- /Encabezado-->
-
-
 	</div>
 	<!-- /Contenido Principal-->
 {% endblock %}

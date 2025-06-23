@@ -8,23 +8,17 @@
     {% load static %}
     <img src="{% static 'inicio/images/registrar.png' %}" alt="Imagen registro">
 {% endblock %}
+{% block vista %}
+    Registrar
+{% endblock %}
     
 {% block contenido%}
 
-		<!-- Contenido Principal-->
-        <div class="page-content">
-
-
 			<!--Encabezdo -->
-			<div class="page-header">
-				<div class="page-title">
-					<h3>Registro
-                    <small>Ingresa tu información</small></h3>
-				</div>
-
-				
-				
-			</div>
+			{% block encabezado %}
+				<h3>Registro
+                <small>Ingresa tu información</small></h3>
+			{% endblock %}
 			<!-- /Encabezado-->
 
 			<!-- Formulario -->
@@ -71,6 +65,4 @@
 				</div>
 			</form>
 		<!-- Fin del Formulario -->
-		</div>
-		<!-- /Contenido Principal-->
 {%endblock%}
