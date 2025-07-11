@@ -1,0 +1,50 @@
+{% extends "inicio/encabezado.html" %}
+
+{% block titulo %}
+    Comentarios
+{% endblock %}
+{% block image %}
+    {% load static %}
+    <img src="{% static 'inicio/images/home.png' %}" alt="Imagen principal">
+{% endblock %}
+{% block vista %}
+    Comentarios
+{% endblock %}
+    
+{% block contenido%}
+    <!-- Contenido Principal-->
+		<!--Encabezdo -->
+		{% block encabezado %}
+			<h3> Comentarios de contactos</h3>
+			<small>Lista de comentarios </small>
+		{% endblock %}
+		<!-- /Encabezado-->
+
+		<!-- Tabla comentarios -->
+		<table class="table table-borderer table-striped">
+			<thead>
+				<tr>
+					<th>Usuario</th>
+					<th>Mensaje</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+                {% for comentario in comentarios %}
+				<tr>
+				<td class="muted">{{comentario.usuario}}</td>
+				<td class="muted">{{comentario.mensaje}}</td>
+				<td class="text-center">
+					<a href="{% url "ConsultaIndividual" comentario.id %}">Editar</a>
+				</td>
+				<td class="text-center">
+						<a href="{% url "Eliminar" comentario.id %}">Eliminar</a>
+				</td>
+				</tr>
+                {%endfor%}
+			</tbody>
+		</table>
+		<!-- /tabla -->
+	<!-- /Contenido Principal-->
+{% endblock %}

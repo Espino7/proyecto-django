@@ -74,7 +74,9 @@
 					<ul class="navigation">
 								<li><a href="{%url 'Principal'%}">Home</a></li>
 								<li><a href="{%url 'Formulario'%}">Registrar</a></li>
-								<li><a href="{%url 'Contacto'%}">Contactanos</a></li>		
+								<li><a href="{%url 'Contacto'%}">Contactanos</a></li>
+								<li><a href="{% url "Comentarios" %}">Comentarios</a></li>
+								<li><a href="{% url "Consultas" %}">Consulta</a></li>	
 					</ul>
 					<!-- /Fin menú -->
 				</div>
@@ -85,38 +87,38 @@
 
 		<!-- Contenido Principal -->
 		<div class="page-content">
-		
-		<!--Encabezdo -->
-		<div class="page-header">
-			<div class="page-title">
-				{%block encabezado%} {% endblock %}
+			
+			<!--Encabezdo -->
+			<div class="page-header">
+				<div class="page-title">
+					{%block encabezado%} {% endblock %}
+				</div>
 			</div>
-		</div>
-		<!-- /Encabezado-->
+			<!-- /Encabezado-->
 
-		<!-- Barra de navegación -->
-			<div class="breadcrumb-line">
-				<ul class="breadcrumb">
-					<a href="{%url 'Principal'%}">
-						{%if request.path == '/' %}
-							Principal
-						{% else %}
-							Principal{{ request.path }}
-						{% endif %}
-					</a>
-				</ul>
-			</div>
 			<!-- Barra de navegación -->
+				<div class="breadcrumb-line">
+					<ul class="breadcrumb">
+						<a href="{%url 'Principal'%}">
+							{%if request.path == '/' %}
+								Principal
+							{% else %}
+								Principal{{ request.path }}
+							{% endif %}
+						</a>
+					</ul>
+				</div>
+				<!-- Barra de navegación -->
 
-		<!-- Contenido -->
-			{% block contenido %} 
-				<!-- Template Tag -->
-				<!-- Block sirve para indicar que colocaremos un bloque de contenido a traves de nuestras variable content -->
-			{% endblock %}
-		<!-- /Contenido-->
+			<!-- Contenido -->
+				{% block contenido %} 
+					<!-- Template Tag -->
+					<!-- Block sirve para indicar que colocaremos un bloque de contenido a traves de nuestras variable content -->
+				{% endblock %}
+			<!-- /Contenido-->
 
 
-		
+			
 		</div>
 		<!-- /Contenido Principal -->
 	</body>
