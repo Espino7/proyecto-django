@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Alumnos
 from .forms import ComentarioContactoForm
 from .models import ComentarioContacto
+import datetime
 # Accedemos al modelo Alumnos que contiene la estructura de la tabla.
 
 # Create your views here.
@@ -51,7 +52,7 @@ def eliminarComentarioContacto(request, id, confirmacion='registros/confirmarEli
         return render(request, "registros/comentarios.html", {'comentarios':comentarios})
     return render(request, confirmacion, {'object':comentario})
 
-
+# Consultas de alumnos
 def consultar1(request):
     alumnos=Alumnos.objects.filter(carrera="TI")
     return render(request, "registros/consultas.html", {'alumnos':alumnos})
@@ -67,3 +68,40 @@ def consultar3(request):
 def consultar4(request):
     alumnos=Alumnos.objects.filter(turno__contains="Vesp")
     return render(request, "registros/consultas.html",{'alumnos':alumnos})
+
+def consultar5(request):
+    alumnos=Alumnos.objects.filter(nombre__in=["Juan", "Ana"])
+    return render(request, "registros/consultas.html", {'alumnos':alumnos})
+
+def consultar6(request):
+    fechaInicio = datetime.date(2025, 6, 23)
+    fechaFin = datetime.date(2025, 7, 10)
+    alumnos=Alumnos.objects.filter(created__range=(fechaInicio, fechaFin))
+    return render(request, "registros/consultas.html", {'alumnos':alumnos})
+
+def consultar7(request):
+    alumnos=Alumnos.objects.filter(comentario__coment__contains='No inscrito')
+    return render(request, "registros/consultas.html", {'alumnos':alumnos})
+
+# Consultas de comentarios contacto
+def consulta1(request):
+    fechaInicio = datetime.date(2025, 7, 8)
+    fechaFin = datetime.date(2025, 7, 9)
+    comentarios = ComentarioContacto.objects.filter(created__range=(fechaInicio, fechaFin))
+    return render(request, "registros/consultasComentario.html", {'comentarios': comentarios})
+
+def consulta2(request):
+    comentarios = ComentarioContacto.objects.filter(mensaje__contains='ARRARRIWRA RROOOOW')
+    return render(request, "registros/consultasComentario.html", {'comentarios': comentarios})
+
+def consulta3(request):
+    comentarios = ComentarioContacto.objects.filter(usuario__in=["Tester 1"])
+    return render(request, "registros/consultasComentario.html", {'comentarios': comentarios})
+
+def consulta4(request):
+    comentarios = ComentarioContacto.objects.only('mensaje')
+    return render(request, "registros/consultaOnly.html", {'comentarios': comentarios})
+
+def consulta5(request):
+    comentarios = ComentarioContacto.objects.exclude(mensaje__contains='prueba')
+    return render(request, "registros/consultasComentario.html", {'comentarios': comentarios})

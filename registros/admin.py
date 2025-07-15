@@ -7,7 +7,7 @@ from .models import ComentarioContacto
 
 class AdministrarModelo(admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
-    list_display = ('matricula', 'nombre', 'carrera', 'turno')
+    list_display = ('matricula', 'nombre', 'carrera', 'turno', 'created')
     search_fields = ('matricula', 'nombre', 'carrera', 'turno')
     date_hierarchy = 'created'
     list_filter = ('carrera', 'turno')
@@ -18,12 +18,19 @@ class AdministrarComentarios(admin.ModelAdmin):
     list_display = ('id', 'coment')
     search_fields = ('id', 'created')
     date_hierarchy = 'created'
-    readonly_fields = ('created', 'id')
+    readonly_fields = ('created', 'id')  
+
+    def get_readonly_fields(self, request, obj=None):
+        if request.user.groups.filter(name="comentaristas").exists():
+            return ('alumno', 'created', 'id')
+        else:
+            return ('alumno', 'coment', 'created', 'id')
+
 
 admin.site.register(Comentario, AdministrarComentarios)
 
 class AdministrarComentariosContacto(admin.ModelAdmin):
-    list_display = ('id', 'usuario')
+    list_display = ('id', 'usuario', 'created')
     search_fields = ('id', 'created')
     date_hierarchy = 'created'
     readonly_fields = ('created', 'id')

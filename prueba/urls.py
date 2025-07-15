@@ -31,10 +31,21 @@ urlpatterns = [
     path('formEditarComentario/<int:id>/', views_registros.consultarComentarioIndividual, name='ConsultaIndividual'),
     path('editarComentario/<int:id>/', views_registros.editarComentarioContacto, name='Editar'),
     path('eliminarComentario/<int:id>/', views_registros.eliminarComentarioContacto, name='Eliminar'),
+    # Consultas Alumnos
     path('consultar1', views_registros.consultar1, name="Consultas"),
     path('consultar2', views_registros.consultar2, name="Consultas2"),
     path('consultar3', views_registros.consultar3, name="Consultas3"),
     path('consultar4', views_registros.consultar4, name="Consultas4"),
+    path('consultar5', views_registros.consultar5, name="Consultas5"),
+    path('consultar6', views_registros.consultar6, name="Consultas6"),
+    path('consultar7', views_registros.consultar7, name="Consultas7"),
+
+    # Consultas comentarios
+    path('consulta1', views_registros.consulta1, name="Consultas_Contacto"),
+    path('consulta2', views_registros.consulta2, name="Consulta2"),
+    path('consulta3', views_registros.consulta3, name="Consulta3"),
+    path('consulta4', views_registros.consulta4, name="Consulta4"),
+    path('consulta5', views_registros.consulta5, name="Consulta5"),
 ]
 
 # Agrega rutas para archivos media solo si estás en modo DEBUG
