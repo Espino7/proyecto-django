@@ -11,6 +11,9 @@ class AdministrarModelo(admin.ModelAdmin):
     search_fields = ('matricula', 'nombre', 'carrera', 'turno')
     date_hierarchy = 'created'
     list_filter = ('carrera', 'turno')
+    list_per_page=2
+    list_display_links=('matricula', 'nombre')
+    list_editable=('turno')
 
 admin.site.register(Alumnos, AdministrarModelo)
 
@@ -24,7 +27,7 @@ class AdministrarComentarios(admin.ModelAdmin):
         if request.user.groups.filter(name="comentaristas").exists():
             return ('alumno', 'created', 'id')
         else:
-            return ('alumno', 'coment', 'created', 'id')
+            return ('created', 'id')
 
 
 admin.site.register(Comentario, AdministrarComentarios)

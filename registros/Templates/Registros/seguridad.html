@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguridad</title>
+    </head>
+    <body>
+
+    <form method="GET">
+        Nombre: 
+        <input type="text" name="nombre" />
+        <input type="submit" value="Buscar" />
+    </form>
+
+    <!-- CORRECCIÓN: id debe ir dentro de la etiqueta, no en el contenido -->
+    <h2 >Resultado {{nombre|safe}}</h2>
+
+    <script type="application/javascript">
+        // CORRECCIÓN: URLSearchParams necesita 'location.search', no 'document.location,search'
+        var busqueda = new URLSearchParams(location.search);
+
+        if (busqueda.has("nombre")) {
+        document.getElementById("resultado").innerHTML = "Resultado: " + busqueda.get("nombre");
+        }
+    </script>
+    
+</body>
+</html>

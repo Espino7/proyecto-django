@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Alumnos
-from .forms import ComentarioContactoForm
-from .models import ComentarioContacto
+from .forms import ComentarioContactoForm, FormArchivos
+from .models import ComentarioContacto, Archivos, Alumnos
 import datetime
+from django.contrib import messages
 # Accedemos al modelo Alumnos que contiene la estructura de la tabla.
 
 # Create your views here.
@@ -105,3 +105,38 @@ def consulta4(request):
 def consulta5(request):
     comentarios = ComentarioContacto.objects.exclude(mensaje__contains='prueba')
     return render(request, "registros/consultasComentario.html", {'comentarios': comentarios})
+
+#Consulta SQL
+
+def consultarSQL(request):
+    alumnos = Alumnos.objects.raw(
+        "SELECT id, matricula, nombre, carrera, turno, imagen FROM registros_alumnos WHERE carrera = 'TI' ORDER BY turno DESC"
+    )
+    return render(request, "registros/consultas.html", {'alumnos': alumnos})
+
+
+def archivos(request):
+    if request.method == 'POST':
+        form = FormArchivos(request.POST, request.FILES)
+        if form.is_valid():
+            titulo = form.cleaned_data['titulo']
+            descripcion = form.cleaned_data['descripcion']
+            archivo = form.cleaned_data['archivo']
+
+            insert = Archivos(titulo=titulo, descripcion=descripcion, archivo=archivo)
+            insert.save()
+
+            messages.success(request, "Archivo subido correctamente")
+            return render(request, "registros/archivos.html", {'form': FormArchivos()})  # formulario limpio
+        else: 
+            messages.error(request, "Error al procesar el formulario")
+            return render(request, "registros/archivos.html", {'form': form})
+    else: 
+        form = FormArchivos()
+        return render(request, "registros/archivos.html", {'form': form})
+def subirArchivos(request):
+    return render(request, "registros/archivos.html")
+
+def seguridad(request, nombre=None):
+    nombre = request.GET.get('nombre')
+    return render(request, "registros/seguridad.html", {'nombre': nombre})
