@@ -13,7 +13,7 @@ class AdministrarModelo(admin.ModelAdmin):
     list_filter = ('carrera', 'turno')
     list_per_page=2
     list_display_links=('matricula', 'nombre')
-    list_editable=('turno')
+    list_editable=('turno', 'nombre')
 
 admin.site.register(Alumnos, AdministrarModelo)
 
